@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ly.add</groupId>
+    <artifactId>sponge</artifactId>
+    <packaging>pom</packaging>
+    <version>1.6.13</version>
+
+    <modules>
+        <module>sponge-common</module>
+        <module>sponge-ssm</module>
+        <module>sponge-tcel</module>
+        <module>sponge-es</module>
+        <module>sponge-sbm</module>
+    </modules>
+
+    <properties>
+        <sponge.version>1.6.13</sponge.version>
+        <java.version>1.8</java.version>
+        <source.version>1.8</source.version>
+        <target.version>1.8</target.version>
+        <sourceEncoding>UTF-8</sourceEncoding>
+        <encoding>UTF-8</encoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- 编译 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>${source.version}</source>
+                    <target>${target.version}</target>
+                    <encoding>${encoding}</encoding>
+                    <failOnError>true</failOnError>
+                    <showDeprecation>true</showDeprecation>
+                    <showWarnings>true</showWarnings>
+                    <compilerArguments>
+                        <verbose/>
+                        <bootclasspath>${java.home}/lib/rt.jar;${java.home}/lib/jce.jar</bootclasspath>
+                    </compilerArguments>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.plexus</groupId>
+                        <artifactId>plexus-compiler-javac</artifactId>
+                        <version>1.8.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <!-- 更新元数据 -->
+                    <updateReleaseInfo>true</updateReleaseInfo>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>tc_public</id>
+            <url>http://nexus.17usoft.com/repository/mvn-all/</url>
+        </repository>
+    </repositories>
+
+    <!-- deploy使用 -->
+    <distributionManagement>
+        <repository>
+            <id>dcbi-releases</id>
+            <name>tc-nexus</name>
+            <url>http://nexus.17usoft.com/repository/mvn-wireless-dcbi-release/</url>
+        </repository>
+    </distributionManagement>
+
+
+</project>
